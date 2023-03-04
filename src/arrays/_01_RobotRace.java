@@ -24,17 +24,19 @@ public class _01_RobotRace {
 		boolean b = true;
 		
 		while(b) {
-			for(int j =0;j<robs.length;j++) {
+			ROBS:for(int j =0;j<robs.length;j++) {
 				int ran = (int)(Math.random()*50);
-				int count =0;
+				
+				
 				for(int k = 1;k<ran;k++) {
-					count+=ran;
+				
 					robs[j].move(1);
 					robs[j].turn(1);
 					
-					
-					if(robs[j].getX()<=252&&robs[j].getY()<300&&robs[j].getY()>299) {
+					//&&robs[j].getY()<301&&robs[j].getY()>298
+					if(robs[j].getX()==250&&robs[j].getY()==300) {
 						b = false;
+						break ROBS;
 					}
 				}
 			

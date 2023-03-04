@@ -8,36 +8,36 @@ import processing.core.PImage;
  * In this class:
  * 1. Declare a PImage array variable as a member variable in this class.
  *    DO NOT initialize it.
- * 
+ * 		DONE
  * 2. In the initializePaintings() method, initialize the PImage array to
  *    contain 4 images.
- * 
+ * 		DONE
  * 3. Use the loadImage() method to assign each of the 4 images in the /images
  *    folder to an index in the PImage array
  *    "starryNight.jpg", "strawHatPortrait.jpg",
  *    "wheatField.jpg", "painterOnRoad.jpg"
- * 
+ * 		DONE
  * 4. Declare a member variable to keep track of the current image index from the
  *    array. This variable will indicate which image to display from the array.
- * 
+ * 		DONEISH
  * 5. In the initializePaintings() method, initialize the variable to 0
  *    so the first painting to select is the first one in the array.
- * 
+ * 		DONE
  * 6. Call the setNewPainting() method from the brush object and pass in
  *    the current painting as an input variable. It should be similar to this:
  *    brush.setNewPainting(paintings[currentIndex]);
- * 
+ * 		DONE
  * 7. Run the program. You should be able to paint with your brush when
  *    pressing the mouse and dragging. The paint will be thicker the faster
  *    the mouse moves and more detailed when moving the mouse slowly.
  *    Press 'r' to remove all the paint from the canvas and start over.
- * 
+ * 			DONE
  * 8. In the selectNextPainting() method, increase the image index variable
  *    by 1. Add code to make sure the index variable is never larger than the
  *    size of the painting array and wraps back to the first painting.
- * 
+ * 		DONE
  * 9. Call the setNewPainting() method from the brush object similar to step 6.
- * 
+ * 			DONE
  * 10.Run the program. Press the spacebar to move to the next painting.
  *    Make sure that pressing the spacebar on the fourth painting returns
  *    back to the first one.
@@ -49,6 +49,11 @@ import processing.core.PImage;
 public class _03_VanGogh extends PApplet {
     PImage canvas;
     PImage paintbrushCursor;
+    
+    PImage[] paintings;
+    
+    int index;
+    
     boolean initializeCanvas = true;
     
     /*
@@ -57,11 +62,26 @@ public class _03_VanGogh extends PApplet {
     Brush brush;
     
     void initializePaintings() {
+    	
+        paintings = new PImage[4];
+        paintings[0]=loadImage("starryNight.jpg");
+        paintings[1]=loadImage("strawHatPortrait.jpg");
+        paintings[2]=loadImage("wheatField.jpg");
+        paintings[3]=loadImage("painterOnRoad.jpg");
+        
+        index = 0;
+        brush.setNewPainting(paintings[index]);
         
     }
     
     void selectNextPainting() {
         
+    	if(index+1>=4)
+    		index =0;
+    	else
+    		index++;
+    	
+    	brush.setNewPainting(paintings[index]);
     }
 
     @Override
